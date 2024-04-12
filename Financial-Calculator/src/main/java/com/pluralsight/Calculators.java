@@ -27,15 +27,31 @@ public class Calculators {
         int loanLength = scanner.nextInt();
 
         double monthlyInterestRate = interest/1200;
-        double monthlyTotalMonth = loanLength*12;
-        double monthlyPayment = (principal*(monthlyInterestRate*Math.pow(1+monthlyInterestRate,monthlyTotalMonth))/(Math.pow(1+monthlyInterestRate,monthlyTotalMonth)-1));
-        double totalInterest = monthlyPayment * monthlyTotalMonth - principal;
+        double monthlyTotal = loanLength*12;
+        double monthlyPayment = (principal*(monthlyInterestRate*Math.pow(1+monthlyInterestRate,monthlyTotal))/(Math.pow(1+monthlyInterestRate,monthlyTotal)-1));
+        double totalInterest = monthlyPayment * monthlyTotal - principal;
 
         System.out.printf("This is your monthly payment: "+  String.format("$%.2f\n", monthlyPayment));
         System.out.printf("This is you total interest rate: " + String.format("$%.2f",totalInterest));
     }
 
     public static void findFutureValue() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("How much is your deposit?: ");
+        double depositAmt = scanner.nextDouble();
+        System.out.print("What is your interest rate?: ");
+        double interestRate = scanner.nextDouble();
+        System.out.print("What is the number of years: ");
+        double numOfYears = scanner.nextDouble();
+
+        double dailyInterestRate = interestRate/100;
+        //double dailyTotal = numOfYears*365;
+        double futureValue = depositAmt * (Math.pow((1 + dailyInterestRate / 365), 365 * numOfYears));
+        double totalInterest = futureValue - depositAmt;
+        System.out.printf("Your total interest is: " + String.format("$%.2f \n", totalInterest));
+
+        System.out.printf("This is your future amount: "+ String.format("$%.2f", futureValue));
+
 
     }
 }
